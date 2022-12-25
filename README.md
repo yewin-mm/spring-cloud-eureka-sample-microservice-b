@@ -34,7 +34,7 @@
 
 
 # spring-cloud-eureka-sample-microservice-b
-* This is the sample microservice for Spring Cloud Netflix Eureka service A project.
+* This is the sample microservice for Spring Cloud Netflix Eureka service B project.
 * Eureka is for service discovery. Microservices (client) can register in Eureka Server and communicate each other through Eureka server by Service name.
 * This project is communicate with [Eureka Server](https://github.com/yewin-mm/spring-cloud-eureka-server) for Service Registry <br> 
 and communicate with [Microservice a](https://github.com/yewin-mm/spring-cloud-eureka-sample-microservice-a) and [Microservice b Instance 2](https://github.com/yewin-mm/spring-cloud-eureka-sample-microservice-b-instance2) as sample instance of Service B.
@@ -133,6 +133,7 @@ You need to clone [Microservice a](https://github.com/yewin-mm/spring-cloud-eure
 <a name="check-eureka-server"></a>
 #### Checking Eureka Server Portal
 * Clone and Run [Eureka Server](https://github.com/yewin-mm/spring-cloud-eureka-server) in your IDE.
+* If you don't run Eureka Server first, you will get error when you run this service, because this service will connect to that server.
 * After run the server, Call Eureka Server Portal `http://localhost:8761/` in browser. [Default Eureka Server Url](http://localhost:8761/).
 * You can see `No Instances available` under `Application` tab under `Instances currently registered with Eureka` in `Eureka Server Portal`.
 * Because you up your server and no instance (application) are connected (register) to this server right now.
@@ -140,7 +141,7 @@ You need to clone [Microservice a](https://github.com/yewin-mm/spring-cloud-eure
 * Refresh in your Eureka Server Portal.
   * There, you can see `SERVICE-B` under `Application` tab and `Up(1)` under Status.
   * There, `Up(1)` mean there has only one instance (one application) which registered in Eureka with name `SERVICE-B`. 
-  * You can see follow by url after Up like `192.168.1.2:Service-B:9090`, and you can click that endpoint to see the `SERVICE-B` application `info` which provided by Spring boot `Actuator`.
+  * You can see follow by url after Up like `192.168.1.2:Service-B:9090`, and you can click that endpoint to see this `SERVICE-B` application `info` which provided by Spring boot `Actuator`.
   * You can also see other Services if you `run` [Microservice a](https://github.com/yewin-mm/spring-cloud-eureka-sample-microservice-a) and [Microservice b Instance 2](https://github.com/yewin-mm/spring-cloud-eureka-sample-microservice-b-instance2) at the same time.
   * After run those above Services, `refresh` eureka portal. You can see `Service A` is new line and `Up(1)` as status. `1` mean, there is not running other A Service Instances.
   * But you can't see as two line for `Service-B` and `Service-B Instance` because it used same Service Name when registered in Eureka server. It's mean you duplicated Service B for handling thousands requests.
@@ -177,7 +178,7 @@ You need to clone [Microservice a](https://github.com/yewin-mm/spring-cloud-eure
     * You can see `Hello from Service A` message and this message is from `Service A`.
     * You can check above message is from service A to make sure by checking in your IDE logs, check logs in `Service A` console logs in your IDE.
     * If there has another Instance of Service A (duplicate A application and register in Eureka with same Name), Service B can call well.
-    * It's mean `Service -B` can call to both `Service A` and `A Instance` by using one URL as `Round Robin` rule of Load Balancer.
+    * It's mean this `Service-B` can call to both `Service A` and `A Instance` by using one URL as `Round Robin` rule of Load Balancer.
   
   * You can see code in this project for call API through Eureka and this is under `callServiceAFromServiceBThroughEureka` method of `ServiceBTestService` class.
   * Surprisingly that `Service-B` need only `Service Name` to call other Services and no need to know for URL and also used `only one` url which provided from `Eureka Server` to call `Service A` and `Service A instance`.
